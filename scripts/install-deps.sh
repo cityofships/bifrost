@@ -125,18 +125,13 @@ fi
 set +ux
 . ${VENV}/bin/activate
 set -u
-if [[ "${BIFROST_TRACE:-}" == true ]]; then
-    set -x
-fi
+set -x
 VIRTUAL_ENV=${VENV}
 
 # If we're using a venv, we need to work around sudo not
 # keeping the path even with -E.
 PYTHON="python3"
 PIP="${PYTHON} -m pip"
-if [[ "${BIFROST_TRACE:-}" != true ]]; then
-    PIP="$PIP --quiet"
-fi
 
 # NOTE(rpittau): we need a stable recent version of pip to avoid issues with
 # the cryptography package.
